@@ -17,6 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 " Vundle plugins go here
 """""""""""""""""""""""""""""
 Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'jnurmine/zenburn'
@@ -120,3 +121,8 @@ let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 2
+
+let g:EasyMotion_do_mapping = 0
+nmap s <Plug>(easymotion-s)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
