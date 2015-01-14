@@ -23,6 +23,7 @@ antigen apply
 alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -la'
+alias ed='gvim --remote-silent'
 
 export GOPATH=~/kode/Go
 PATH=$PATH:${GOPATH//://bin:}/bin

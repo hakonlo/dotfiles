@@ -22,6 +22,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'jnurmine/zenburn'
 Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -44,6 +45,7 @@ set visualbell
 set mouse=a
 set number
 set cursorline
+set hidden
 
 set so=7
 
