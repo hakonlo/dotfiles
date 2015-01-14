@@ -21,6 +21,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'jnurmine/zenburn'
+Plugin 'bling/vim-airline'
 
 call vundle#end()
 filetype plugin indent on
