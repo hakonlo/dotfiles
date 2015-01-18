@@ -1,4 +1,5 @@
 Dotfiles
 ====================
 
-Manually symlinked for now.
+Run `setup.sh` to create symlinks. Be careful.
+
