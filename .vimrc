@@ -19,10 +19,17 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'jnurmine/zenburn'
 Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'rking/ag.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 call vundle#end()
 filetype plugin indent on
@@ -89,6 +96,8 @@ vmap <C-C> "+y
 " Clear search results with 'enter'
 nnoremap <CR> :noh<CR><CR>
 
+imap <C-Return> <CR><CR><C-o>k<Tab>
+
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 
@@ -129,3 +138,40 @@ let g:EasyMotion_do_mapping = 0
 nmap s <Plug>(easymotion-s)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
+
+" Configure unite.vim
+let g:unite_enable_start_insert=1
+
+if executable('ag')
+    " Use ag in unite grep source.
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts =
+                \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+                \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+    let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+    " Use pt in unite grep source.
+    " https://github.com/monochromegane/the_platinum_searcher
+    let g:unite_source_grep_command = 'pt'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+    let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+    " Use ack in unite grep source.
+    let g:unite_source_grep_command = 'ack-grep'
+    let g:unite_source_grep_default_opts =
+                \ '-i --no-heading --no-color -k -H'
+    let g:unite_source_grep_recursive_opt = ''
+endif
+
+nnoremap <Space>p :Unite file_rec/async<CR>
+nnoremap <Space>/ :Unite grep:.<CR>
+nnoremap <Space>s :Unite -quick-match buffer<CR>
+nnoremap <Space>* :Ag<CR>
+
+au FileType * setl conceallevel=0

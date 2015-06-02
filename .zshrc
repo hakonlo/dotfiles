@@ -24,6 +24,5 @@ alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -la'
 alias ed='gvim --remote-silent'
-
-export GOPATH=~/kode/Go
-PATH=$PATH:${GOPATH//://bin:}/bin
+alias s='ssh'
+alias zomg='sudo sshuttle -r hakonl@ft01.sl1.zedge.net:4000 192.155.203.0/24 -vv --dns'
