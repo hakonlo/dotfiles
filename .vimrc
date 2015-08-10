@@ -98,6 +98,12 @@ nnoremap <CR> :noh<CR><CR>
 
 imap <C-Return> <CR><CR><C-o>k<Tab>
 
+" NERDTree keybindings
+set <F2>=<C-v><F2>
+set <F3>=<C-v><F3>
+map <F2> :NERDTreeToggle<CR>
+map <F3> :NERDTreeFind<CR>
+
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 
