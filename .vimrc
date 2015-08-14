@@ -30,6 +30,7 @@ Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 filetype plugin indent on
@@ -67,7 +68,7 @@ if has("gui_running")
     set guioptions-=m
     set t_Co=256
     set guitablabel=%M\ %t
-    set guifont=Input\ Mono\ Narrow\ Medium\ Condensed\ 12
+    set guifont=Input\ Mono\ Narrow\ Medium\ Condensed\ 10
 endif
 
 set encoding=utf8
@@ -181,3 +182,5 @@ nnoremap <Space>s :Unite -quick-match buffer<CR>
 nnoremap <Space>* :Ag<CR>
 
 au FileType * setl conceallevel=0
+
+nmap <F4> :TagbarToggle<CR>
