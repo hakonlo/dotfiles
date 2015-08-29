@@ -31,6 +31,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
+Plugin 'rust-lang/rust.vim'
+Plugin 'raichoo/purescript-vim'
 
 call vundle#end()
 filetype plugin indent on
