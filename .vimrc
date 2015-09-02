@@ -33,6 +33,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
 Plugin 'rust-lang/rust.vim'
 Plugin 'raichoo/purescript-vim'
+Plugin 'solarnz/thrift.vim'
+Plugin 'godlygeek/tabular'
 
 call vundle#end()
 filetype plugin indent on
