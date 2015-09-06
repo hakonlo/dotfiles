@@ -35,6 +35,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'raichoo/purescript-vim'
 Plugin 'solarnz/thrift.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'idris-hackers/idris-vim'
 
 call vundle#end()
 filetype plugin indent on
