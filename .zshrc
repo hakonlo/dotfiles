@@ -25,6 +25,5 @@ alias ll='ls -l'
 alias la='ls -la'
 alias ed='gvim --remote-silent'
 alias s='ssh'
-alias zomg='sudo sshuttle -r hakonl@ft01.sl1.zedge.net:4000 192.155.203.0/24 -vv --dns'
 
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
