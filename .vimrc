@@ -28,7 +28,7 @@ Plugin 'Shougo/unite.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
 Plugin 'rust-lang/rust.vim'
@@ -37,7 +37,14 @@ Plugin 'solarnz/thrift.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'idris-hackers/idris-vim'
 
+" python
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'ivanov/vim-ipython'
+
 call vundle#end()
+
+let python_highlight_all=1
 filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -73,7 +80,7 @@ if has("gui_running")
     set guioptions-=m
     set t_Co=256
     set guitablabel=%M\ %t
-    set guifont=Input\ Mono\ Narrow\ Medium\ Condensed\ 10
+    set guifont=Input\ Mono\ Narrow\ Medium\ Condensed\ 18
 endif
 
 set encoding=utf8
@@ -109,6 +116,8 @@ set <F2>=<C-v><F2>
 set <F3>=<C-v><F3>
 map <F2> :NERDTreeToggle<CR>
 map <F3> :NERDTreeFind<CR>
+
+let NERDTreeIgnore = ['\.pyc$']
 
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
@@ -189,3 +198,21 @@ nnoremap <Space>* :Ag<CR>
 au FileType * setl conceallevel=0
 
 nmap <F4> :TagbarToggle<CR>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"au BufNewFile,BufRead *.py
+    "\ set tabstop=4
+    "\ set softtabstop=4
+    "\ set shiftwidth=4
+    "\ set textwidth=79
+    "\ set expandtab
+    "\ set autoindent
+    "\ set fileformat=unix

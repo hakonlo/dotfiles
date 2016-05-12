@@ -15,4 +15,5 @@ ln -s "$DOTFILES"/.vimrc ~/.vimrc
 vim +PluginInstall +qall
 
 ln -s "$DOTFILES"/.zshrc ~/.zshrc
+ln -s "$DOTFILES"/antigen.zsh ~/.antigen.zsh
 
