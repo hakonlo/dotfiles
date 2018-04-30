@@ -19,7 +19,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'jnurmine/zenburn'
 Plugin 'bling/vim-airline'
@@ -28,7 +27,6 @@ Plugin 'Shougo/unite.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
-"Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
 Plugin 'rust-lang/rust.vim'
@@ -36,11 +34,13 @@ Plugin 'raichoo/purescript-vim'
 Plugin 'solarnz/thrift.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'idris-hackers/idris-vim'
+Plugin 'maralla/validator.vim'
 
 " python
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
-Plugin 'ivanov/vim-ipython'
+"Plugin 'ivanov/vim-ipython'
+Plugin 'davidhalter/jedi-vim'
 
 call vundle#end()
 
@@ -80,7 +80,7 @@ if has("gui_running")
     set guioptions-=m
     set t_Co=256
     set guitablabel=%M\ %t
-    set guifont=Input\ Mono\ Narrow\ Medium\ Condensed\ 18
+    set guifont=Input\ Mono\ Narrow\ Medium\ Condensed\ 10
 endif
 
 set encoding=utf8
@@ -117,7 +117,7 @@ set <F3>=<C-v><F3>
 map <F2> :NERDTreeToggle<CR>
 map <F3> :NERDTreeFind<CR>
 
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
@@ -150,10 +150,24 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+
+
+" Autocomplete
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 2
+
+" Configure jedi-vim to work with neocomplete
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+
+
 
 let g:EasyMotion_do_mapping = 0
 nmap s <Plug>(easymotion-s)
@@ -199,14 +213,14 @@ au FileType * setl conceallevel=0
 
 nmap <F4> :TagbarToggle<CR>
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 0
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 "au BufNewFile,BufRead *.py
     "\ set tabstop=4
@@ -216,3 +230,10 @@ let g:syntastic_check_on_wq = 0
     "\ set expandtab
     "\ set autoindent
     "\ set fileformat=unix
+
+au BufNewFile,BufRead *.yml
+    \ setlocal tabstop=2 |
+    \ setlocal softtabstop=2 |
+    \ setlocal expandtab |
+    \ setlocal autoindent |
+    \ setlocal fileformat=unix
