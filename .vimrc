@@ -119,6 +119,8 @@ map <F3> :NERDTreeFind<CR>
 
 let NERDTreeIgnore = ['\.pyc$', '\.retry$']
 
+let g:NERDTreeNodeDelimiter = "\u00a0"
+
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 
