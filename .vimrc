@@ -12,7 +12,7 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " Vundle plugins go here
 """""""""""""""""""""""""""""
@@ -24,8 +24,6 @@ Plugin 'jnurmine/zenburn'
 Plugin 'bling/vim-airline'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/denite.nvim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
@@ -33,7 +31,6 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'raichoo/purescript-vim'
 Plugin 'solarnz/thrift.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'idris-hackers/idris-vim'
 Plugin 'maralla/validator.vim'
 
 " python
