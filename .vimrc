@@ -23,7 +23,7 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'jnurmine/zenburn'
 Plugin 'bling/vim-airline'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/denite.nvim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
@@ -182,34 +182,17 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
 
-" Configure unite.vim
-let g:unite_enable_start_insert=1
-
-if executable('ag')
-    " Use ag in unite grep source.
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts =
-                \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
-                \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-    let g:unite_source_grep_recursive_opt = ''
-elseif executable('pt')
-    " Use pt in unite grep source.
-    " https://github.com/monochromegane/the_platinum_searcher
-    let g:unite_source_grep_command = 'pt'
-    let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-    let g:unite_source_grep_recursive_opt = ''
-elseif executable('ack-grep')
-    " Use ack in unite grep source.
-    let g:unite_source_grep_command = 'ack-grep'
-    let g:unite_source_grep_default_opts =
-                \ '-i --no-heading --no-color -k -H'
-    let g:unite_source_grep_recursive_opt = ''
+" Denite
+if executable('rg')
+    call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+elseif executable('ag')
+    call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
 
-nnoremap <Space>p :Unite file_rec/async<CR>
-nnoremap <Space>/ :Unite grep:.<CR>
-nnoremap <Space>s :Unite -quick-match buffer<CR>
-nnoremap <Space>* :Ag<CR>
+nnoremap <Space>p :Denite file/rec<CR>
+nnoremap <Space>/ :Denite grep<CR>
+nnoremap <Space>s :Denite buffer<CR>
+nnoremap <Space>* :DeniteProject grep<CR>
 
 au FileType * setl conceallevel=0
 
