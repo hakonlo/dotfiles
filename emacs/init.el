@@ -75,6 +75,8 @@
     (display-line-numbers-mode)
     (setq display-line-numbers 'relative))
   (add-hook 'prog-mode-hook #'ab/enable-line-numbers)
+
+  (setq vc-follow-symlinks t)
 )
 
 
@@ -305,7 +307,7 @@
 ;; Python
 ; Enable treesitter mode for python
 (setq major-mode-remap-alist
-      '((python-mode . python-ts-mode))
+      '((python-mode . python-ts-mode)))
         
 
 ; Enable eglot (LSP) when in python-mode
