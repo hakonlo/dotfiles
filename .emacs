@@ -1,3 +1,0 @@
-(require 'package)
-(require 'cl)
-
