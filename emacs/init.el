@@ -247,7 +247,8 @@
   :defer t
   :config
   (treemacs-follow-mode t)
-  (treemacs-filewatch-mode t))
+  (treemacs-filewatch-mode t)
+  (treemacs-git-mode 'deferred))
 
 (use-package treemacs-evil
   :after (treemacs evil)
