@@ -23,15 +23,11 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'jnurmine/zenburn'
 Plugin 'bling/vim-airline'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/denite.nvim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
 Plugin 'rust-lang/rust.vim'
-Plugin 'raichoo/purescript-vim'
-Plugin 'solarnz/thrift.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'maralla/validator.vim'
 
 " python
 Plugin 'vim-scripts/indentpython.vim'
@@ -97,6 +93,9 @@ set wrap
 
 map j gj
 map k gk
+
+nnoremap <SPACE> <Nop>
+let mapleader=" "
 
 " Copy/paste
 nmap <C-V> "+gP
@@ -169,27 +168,15 @@ let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*f
 
 
 let g:EasyMotion_do_mapping = 0
-nmap s <Plug>(easymotion-s)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+nmap <Leader>s <Plug>(easymotion-s)
+nmap <Leader>j <Plug>(easymotion-j)
+nmap <Leader>k <Plug>(easymotion-k)
 
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
-
-" Denite
-if executable('rg')
-    call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-elseif executable('ag')
-    call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-endif
-
-nnoremap <Space>p :Denite file/rec<CR>
-nnoremap <Space>/ :Denite grep<CR>
-nnoremap <Space>s :Denite buffer<CR>
-nnoremap <Space>* :DeniteProject grep<CR>
 
 au FileType * setl conceallevel=0
 
