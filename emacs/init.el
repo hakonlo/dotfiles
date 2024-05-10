@@ -202,7 +202,10 @@
     "g" '(:ignore t :which-key "git")
     "g <escape>" '(keyboard-escape-quit :which-key t)
     "g g" '(magit-status :which-key "status")
-    "g l" '(magit-log :which-key "log"))
+    "g l" '(magit-log :which-key "log")
+    "g b" '(magit-branch :which-key "branch")
+    "g r" '(magit-rebase :which-key "rebase")
+    "g f" '(magit-fetch-all :which-key "fetch"))
   (general-nmap "<escape>" #'transient-quit-one))
 
 
@@ -238,6 +241,27 @@
 (use-package tree-sitter-langs
   :ensure t
   :after tree-sitter)
+
+(use-package treemacs
+  :ensure t
+  :defer t
+  :config
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t))
+
+(use-package treemacs-evil
+  :after (treemacs evil)
+  :ensure t)
+
+(use-package treemacs-projectile
+  :after (treemacs projectile)
+  :ensure t
+  :config
+  (treemacs-project-follow-mode))
+
+(use-package treemacs-magit
+  :after (treemacs magit)
+  :ensure t)
 
 (use-package dired-sidebar
   :demand
