@@ -98,7 +98,7 @@
 
 ; Un/comment with `gc`
 (use-package evil-nerd-commenter
-  :general
+  :config
   (general-nvmap
     "gc" 'evilnc-comment-operator))
 
@@ -233,14 +233,12 @@
   (projectile-discover-projects-in-search-path))
 
 (use-package tree-sitter
-  :demand
-  :config
-  (global-tree-sitter-mode)
-  (tree-sitter-hl-mode))
+  :demand)
 
-(use-package tree-sitter-langs
+(use-package treesit-auto
   :ensure t
-  :after tree-sitter)
+  :config
+  (global-treesit-auto-mode))
 
 (use-package treemacs
   :ensure t
@@ -263,17 +261,6 @@
 (use-package treemacs-magit
   :after (treemacs magit)
   :ensure t)
-
-(use-package dired-sidebar
-  :demand
-  :general
-  (leader-keys
-    "d" '(:ignore t :which-key "dired")
-    "d <escape>" '(keyboard-escape-quit :which-key t)
-    "d d" '(dired-sidebar-toggle-sidebar :which-key "toggle sidebar")
-  )
-  :commands
-  (dired-sidebar-toggle-sidebar))
 
 (use-package embark
   :ensure t
@@ -328,12 +315,6 @@
   :mode (("\\.org$" . org-mode))
   :ensure org-plus-contrib
   )
-
-;; Python
-; Enable treesitter mode for python
-(setq major-mode-remap-alist
-      '((python-mode . python-ts-mode)))
-        
 
 ; Enable eglot (LSP) when in python-mode
 (add-hook 'python-mode-hook 'eglot-ensure)
