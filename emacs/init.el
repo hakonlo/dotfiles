@@ -237,6 +237,8 @@
 
 (use-package treesit-auto
   :ensure t
+  :custom
+  (treesit-auto-install 'prompt)
   :config
   (global-treesit-auto-mode))
 
@@ -269,9 +271,27 @@
     "a" '(embark-act :which-key "embark"))
   )
 
-(use-package eglot
-  :ensure t
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-l")
+  :hook (
+         (lsp-mode . lsp-enable-which-key-integration)
   )
+  :commands lsp
+)
+
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package lsp-pyright
+  :ensure t
+  :hook (
+         (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp)))
+  )
+)
+(use-package consult-lsp
+  :ensure t)
 
 (use-package consult
   :demand
@@ -283,11 +303,10 @@
     "c o" '(consult-outline :which-key "jump to outline heading")
     "c f" '(consult-ripgrep :which-key "search with ripgrep")
     "c m" '(consult-man :which-key "find man page")
-    "c s" '(consult-eglot-symbols :which-key "find eglot symbol"))
+    "c s" '(consult-lsp-symbols :which-key "find LSP symbol")
+    "c d" '(consult-lsp-diagnostics :which-key "find LSP diagnostics")
+    )
   )
-
-(use-package consult-eglot
-  :ensure t)
 
 (use-package embark-consult
   :ensure t)
@@ -315,6 +334,3 @@
   :mode (("\\.org$" . org-mode))
   :ensure org-plus-contrib
   )
-
-; Enable eglot (LSP) when in python-mode
-(add-hook 'python-mode-hook 'eglot-ensure)
